@@ -1,9 +1,14 @@
 mapping:
-  diagnostics: true
-- factors: M=8 E=0 F=0 R=1 S=0 N=0 G=0 C=8
+- factors: M=8 E=0 F=0 R=1 S=0 N=0 G=0 C=16
   permutation: REFSCMNG
   target: BackingStorage
   type: temporal
+- factors: M=4 E=1 F=1 R=1 S=1 N=1 G=1 C=2
+  permutation: MCRSEFGN
+  target: PE
+  type: spatial
+  split: 1
+
 - factors: M=1 E=1 F=1 R=1 S=1 N=1 G=1 C=1
   permutation: MCRSEFGN
   target: iact_spad
@@ -26,7 +31,7 @@ mapping:
   - Weights
   target: weight_spad
   type: bypass
-- factors: M=8 E=1 F=1 R=0 S=1 N=1 G=1 C=8
+- factors: M=16 E=1 F=1 R=0 S=1 N=1 G=1 C=8
   permutation: MCRSEFGN
   target: psum_spad
   type: temporal
