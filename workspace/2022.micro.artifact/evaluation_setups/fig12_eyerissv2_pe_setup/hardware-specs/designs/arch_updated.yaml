@@ -16,6 +16,7 @@ architecture:
 
       subtree:
         - name: PE
+          spatial: {meshX: 4, meshY: 3}
           local:
             - name: iact_spad
               class: storage

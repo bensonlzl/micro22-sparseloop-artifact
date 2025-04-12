@@ -1,0 +1,93 @@
+architecture:
+  version: 0.3
+  local:
+  - name: eyeriss_v2_PE.PE.iact_spad[0..7]
+    class: storage
+    subclass: SRAM_MD
+    attributes:
+      ag_datawidth: 2.772588722239781
+      block_size: 1
+      counter_width: 0
+      data_storage_depth: 16
+      data_storage_width: 8
+      datawidth: 8
+      meshX: 4
+      meshY: 2
+      metadata_storage_depth: 25
+      metadata_storage_width: 4
+      n_banks: 1
+      n_rdwr_ports: 2
+      phy_datawidth: 8
+      phy_metadata_datawidth: 4
+      technology: 45nm
+  - name: eyeriss_v2_PE.PE.weight_spad[0..7]
+    class: storage
+    subclass: SRAM_MD
+    attributes:
+      ag_datawidth: 5.2574953720277815
+      block_size: 1
+      counter_width: 0
+      data_storage_depth: 192
+      data_storage_width: 8
+      datawidth: 8
+      meshX: 4
+      meshY: 2
+      metadata_storage_depth: 128
+      metadata_storage_width: 8
+      n_banks: 1
+      n_rdwr_ports: 2
+      phy_datawidth: 8
+      phy_metadata_datawidth: 8
+      technology: 45nm
+  - name: eyeriss_v2_PE.PE.psum_spad[0..7]
+    class: storage
+    subclass: SRAM
+    attributes:
+      block_size: 1
+      datawidth: 20
+      depth: 32
+      latency: 5ns
+      meshX: 4
+      meshY: 2
+      n_banks: 1
+      n_rd_ports: 0
+      n_rdwr_ports: 1
+      n_wr_ports: 0
+      technology: 45nm
+      width: 20
+  - name: eyeriss_v2_PE.PE.reg[0..7]
+    class: storage
+    subclass: SRAM_MD
+    attributes:
+      ag_datawidth: 0
+      counter_width: 0
+      data_storage_depth: 1
+      data_storage_width: 8
+      datawidth: 8
+      meshX: 4
+      meshY: 2
+      metadata_storage_depth: 1
+      metadata_storage_width: 4
+      n_banks: 1
+      n_rdwr_ports: 2
+      phy_datawidth: 8
+      phy_metadata_datawidth: 4
+      technology: 45nm
+  - name: eyeriss_v2_PE.PE.MAC[0..7]
+    class: compute
+    subclass: Imac
+    attributes:
+      datawidth: 8
+      meshX: 4
+      meshY: 2
+      technology: 45nm
+  - name: eyeriss_v2_PE.BackingStorage
+    class: DRAM
+    subclass: DRAM
+    attributes:
+      block_size: 8
+      datawidth: 8
+      metadata_storage_width: 8
+      technology: 45nm
+      type: LPDDR4
+      width: 64
