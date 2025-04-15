@@ -1,30 +1,25 @@
 
-BackingStorage [ Weights:4096 (2130) Inputs:65536 (47842) Outputs:65536 (65536) ] 
+BackingStorage [ Weights:4096 (2130) Inputs:65536 (58983) Outputs:65536 (65536) ] 
 ---------------------------------------------------------------------------------
-| for M in [0:2)
-|   for C in [0:2)
-|     for F in [0:2)
-|       for E in [0:2)
-|         for M in [0:2) (Spatial-Y)
+| for M in [0:4)
+|   for F in [0:32)
+|     for E in [0:32)
+|       for M in [0:2) (Spatial-Y)
+|         for C in [0:4) (Spatial-X)
 
-iact_spad [ ] 
--------------
-|           for C in [0:8)
-|             for F in [0:2)
-|               for E in [0:16)
+iact_spad [ Inputs:16 (16) ] 
+----------------------------
+|           for G in [0:1)
 
-weight_spad [ ] 
----------------
+weight_spad [ Weights:128 (128) ] 
+---------------------------------
+|             for C in [0:16)
+
+psum_spad [ Outputs:8 (8) ] 
+---------------------------
+|               for M in [0:8)
+
+reg [ Inputs:1 (1) ] 
+--------------------
 |                 for G in [0:1)
-
-psum_spad [ ] 
--------------
-|                   for M in [0:2)
-|                     for C in [0:4)
-|                       for F in [0:4)
-
-reg [ ] 
--------
-|                         for M in [0:8)
-|                           for F in [0:2)
 

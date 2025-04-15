@@ -69,58 +69,73 @@ def parse_energy_summary(file_path):
 
 
 
+import matplotlib.pyplot as plt
+
 def plot_energy_breakdown_multiple(algorithmic_list, actual_list, labels):
     assert len(algorithmic_list) == len(actual_list) == len(labels), "Each algorithmic/actual entry must have a corresponding label."
-
     num_configs = len(algorithmic_list)
 
-    # Gather all components used across all configs
-    all_components = set()
-    for entry in algorithmic_list + actual_list:
-        all_components.update(entry['breakdown'].keys())
-    components = sorted(all_components)
+    def extract_data(data_list, exclude_backing=False):
+        all_components = set()
+        for entry in data_list:
+            for k in entry['breakdown'].keys():
+                if not (exclude_backing and k == 'BackingStorage'):
+                    all_components.add(k)
+        components = sorted(all_components)
 
-    # Prepare data matrix
-    algo_data = []
-    actual_data = []
-    for alg, act in zip(algorithmic_list, actual_list):
-        algo_data.append([alg['breakdown'].get(comp, 0.0) for comp in components])
-        actual_data.append([act['breakdown'].get(comp, 0.0) for comp in components])
+        data = []
+        for entry in data_list:
+            data.append([entry['breakdown'].get(comp, 0.0) if comp in entry['breakdown'] else 0.0 for comp in components])
+        return components, list(zip(*data))  # Transposed: component-wise, not config-wise
 
-    # Transpose for stacking
-    algo_data = list(zip(*algo_data))  # each sublist is a component across configs
-    actual_data = list(zip(*actual_data))
+    def plot_chart(ax1, ax2, algo_data, actual_data, components, title_suffix):
+        x = list(range(num_configs))
+        width = 0.6
 
-    x = list(range(num_configs))
-    width = 0.6
+        # --- Algorithmic chart ---
+        bottoms = [0] * num_configs
+        for i, comp_vals in enumerate(algo_data):
+            ax1.bar(x, comp_vals, width, bottom=bottoms, label=components[i], color=f"C{i}")
+            bottoms = [bottoms[j] + comp_vals[j] for j in range(num_configs)]
+        ax1.set_title(f"Algorithmic Energy Breakdown {title_suffix}")
+        ax1.set_ylabel("Energy per Compute (pJ)")
+        ax1.set_xticks(x)
+        ax1.set_xticklabels(labels, rotation=45)
+        ax1.grid(axis='y', linestyle='--', alpha=0.6)
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(25, 10), sharey=True)
+        # --- Actual chart ---
+        bottoms = [0] * num_configs
+        for i, comp_vals in enumerate(actual_data):
+            ax2.bar(x, comp_vals, width, bottom=bottoms, label=components[i], color=f"C{i}")
+            bottoms = [bottoms[j] + comp_vals[j] for j in range(num_configs)]
+        ax2.set_title(f"Actual Energy Breakdown {title_suffix}")
+        ax2.set_xticks(x)
+        ax2.set_xticklabels(labels, rotation=45)
+        ax2.grid(axis='y', linestyle='--', alpha=0.6)
 
-    # Algorithmic chart
-    bottoms = [0] * num_configs
-    for i, comp_vals in enumerate(algo_data):
-        ax1.bar(x, comp_vals, width, bottom=bottoms, label=components[i], color=f"C{i}")
-        bottoms = [bottoms[j] + comp_vals[j] for j in range(num_configs)]
-    ax1.set_title("Algorithmic Energy Breakdown")
-    ax1.set_ylabel("Energy per Compute (pJ)")
-    ax1.set_xticks(x)
-    ax1.set_xticklabels(labels, rotation=45)
-    ax1.grid(axis='y', linestyle='--', alpha=0.6)
+        return components
 
-    # Actual chart
-    bottoms = [0] * num_configs
-    for i, comp_vals in enumerate(actual_data):
-        ax2.bar(x, comp_vals, width, bottom=bottoms, label=components[i], color=f"C{i}")
-        bottoms = [bottoms[j] + comp_vals[j] for j in range(num_configs)]
-    ax2.set_title("Actual Energy Breakdown")
-    ax2.set_xticks(x)
-    ax2.set_xticklabels(labels, rotation=45)
-    ax2.grid(axis='y', linestyle='--', alpha=0.6)
+    # === First plot: with BackingStorage ===
+    comp_all, algo_data_all = extract_data(algorithmic_list, exclude_backing=False)
+    _, actual_data_all = extract_data(actual_list, exclude_backing=False)
 
-    # Shared legend
-    fig.legend(components, loc='center right', bbox_to_anchor=(1.12, 0.5))
-    fig.tight_layout()
+    fig1, (ax1a, ax2a) = plt.subplots(1, 2, figsize=(14, 6))
+    plot_chart(ax1a, ax2a, algo_data_all, actual_data_all, comp_all, "(All Components)")
+    fig1.legend(comp_all, loc='center right', bbox_to_anchor=(1.12, 0.5))
+    fig1.tight_layout()
     plt.show()
+
+    # === Second plot: excluding BackingStorage ===
+    comp_excl, algo_data_excl = extract_data(algorithmic_list, exclude_backing=True)
+    _, actual_data_excl = extract_data(actual_list, exclude_backing=True)
+
+    fig2, (ax1b, ax2b) = plt.subplots(1, 2, figsize=(14, 6))
+    plot_chart(ax1b, ax2b, algo_data_excl, actual_data_excl, comp_excl, "(Excluding BackingStorage)")
+    fig2.legend(comp_excl, loc='center right', bbox_to_anchor=(1.12, 0.5))
+    fig2.tight_layout()
+    plt.show()
+
+
     
 # Average read/write bandwidth
 
@@ -157,7 +172,6 @@ def parse_bandwidth_stats(file_path):
                     'format': write_bw * (write_format_pct / 100)
                 }
             }
-
     return bandwidth_data
 
 

@@ -392,8 +392,8 @@ Level 5
         Multiple buffering           : 1.00
         Effective data storage size  : -
         Min utilization              : 0.00
-        Vector read energy           : 0.00 pJ
-        Vector write energy          : 0.00 pJ
+        Vector read energy           : 512.00 pJ
+        Vector write energy          : 512.00 pJ
         Vector metadata read energy  : 0.00 pJ
         Vector metadata write energy : 0.00 pJ
         (De)compression energy       : 0.00 pJ
@@ -456,9 +456,9 @@ Level 5
         Skipped scalar format updates (per-instance)                : 0
         Temporal reductions (per-instance)                          : 0
         Address generations (per-cluster)                           : 45876
-        Energy (per-scalar-access)                                  : 0.00 pJ
-        Energy (per-instance)                                       : 0.00 pJ
-        Energy (total)                                              : 0.00 pJ
+        Energy (per-scalar-access)                                  : 64.01 pJ
+        Energy (per-instance)                                       : 2936320.00 pJ
+        Energy (total)                                              : 2936320.00 pJ
         Temporal Reduction Energy (per-instance)                    : 0.00 pJ
         Temporal Reduction Energy (total)                           : 0.00 pJ
         Address Generation Energy (per-cluster)                     : 0.00 pJ
@@ -519,9 +519,9 @@ Level 5
         Skipped scalar format updates (per-instance)                : 0
         Temporal reductions (per-instance)                          : 0
         Address generations (per-cluster)                           : 159920
-        Energy (per-scalar-access)                                  : 0.00 pJ
-        Energy (per-instance)                                       : 0.00 pJ
-        Energy (total)                                              : 0.00 pJ
+        Energy (per-scalar-access)                                  : 64.00 pJ
+        Energy (per-instance)                                       : 10234880.00 pJ
+        Energy (total)                                              : 10234880.00 pJ
         Temporal Reduction Energy (per-instance)                    : 0.00 pJ
         Temporal Reduction Energy (total)                           : 0.00 pJ
         Address Generation Energy (per-cluster)                     : 0.00 pJ
@@ -559,9 +559,9 @@ Level 5
         Skipped scalar updates (per-instance)                       : 0
         Temporal reductions (per-instance)                          : 507904
         Address generations (per-cluster)                           : 524288
-        Energy (per-scalar-access)                                  : 0.00 pJ
-        Energy (per-instance)                                       : 0.00 pJ
-        Energy (total)                                              : 0.00 pJ
+        Energy (per-scalar-access)                                  : 64.00 pJ
+        Energy (per-instance)                                       : 66060288.00 pJ
+        Energy (total)                                              : 66060288.00 pJ
         Temporal Reduction Energy (per-instance)                    : 0.00 pJ
         Temporal Reduction Energy (total)                           : 0.00 pJ
         Address Generation Energy (per-cluster)                     : 0.00 pJ
@@ -929,8 +929,8 @@ Summary Stats
 GFLOPs (@1GHz): 1.99
 Utilization: 1.00
 Cycles: 1791135
-Energy: 5.78 uJ
-EDP(J*cycle): 1.03e+01
+Energy: 85.01 uJ
+EDP(J*cycle): 1.52e+02
 Area: 0.00 mm^2
 
 Algorithmic Computes = 4194304
@@ -940,13 +940,13 @@ pJ/Algorithmic-Compute
     psum_spad                     = 0.63
     weight_spad                   = 0.44
     iact_spad                     = 0.02
-    BackingStorage                = 0.00
+    BackingStorage                = 18.89
     BackingStorage <==> iact_spad = 0.00
     iact_spad <==> weight_spad    = 0.00
     psum_spad <==> reg            = 0.00
     reg <==> MAC                  = 0.00
     weight_spad <==> psum_spad    = 0.00
-    Total                         = 1.38
+    Total                         = 20.27
 
 Actual Computes = 1791135
 pJ/Compute
@@ -955,11 +955,11 @@ pJ/Compute
     psum_spad                     = 1.47
     weight_spad                   = 1.03
     iact_spad                     = 0.05
-    BackingStorage                = 0.00
+    BackingStorage                = 44.24
     BackingStorage <==> iact_spad = 0.00
     iact_spad <==> weight_spad    = 0.00
     psum_spad <==> reg            = 0.00
     reg <==> MAC                  = 0.00
     weight_spad <==> psum_spad    = 0.00
-    Total                         = 3.22
+    Total                         = 47.46
 

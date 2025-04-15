@@ -59,7 +59,6 @@ def run_timeloop(workloads, mappings, config, pe_art, pe_ert, arch, output_dir, 
     plot_cycle_counts(cycles_list)
     
     
-    
 def run_accelergy(arch, components):
     accelergy_exe = "accelergy"
     lst_of_input_files = [
@@ -72,7 +71,7 @@ def run_accelergy(arch, components):
     print("ACCELERGY COMMAND: ", ' '.join(subprocess_cmd))
 
     
-def run_timeloop_mapper(arch, problem, mapper, pe_art, pe_ert, config):
+def run_timeloop_mapper(arch, problem, mapper, pe_art, pe_ert, config, constraints):
     timeloop_mapper_exe = "timeloop-mapper"
     lst_of_input_files = [
         arch,
@@ -80,7 +79,8 @@ def run_timeloop_mapper(arch, problem, mapper, pe_art, pe_ert, config):
         mapper,
         pe_art,
         pe_ert,
-        config
+        config,
+        constraints
     ]
     subprocess_cmd = [timeloop_mapper_exe, *lst_of_input_files]
     status = subprocess.call(subprocess_cmd) 
