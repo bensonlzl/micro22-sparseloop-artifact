@@ -1,0 +1,6 @@
+mapper:
+  optimization_metrics:  [ edp, delay, energy ]
+  num_threads: 1
+  timeout: 1000
+  victory_condition: 1000
+  algorithm: hybrid
