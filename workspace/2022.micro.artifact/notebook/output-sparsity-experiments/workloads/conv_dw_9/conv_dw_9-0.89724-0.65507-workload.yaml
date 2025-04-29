@@ -1,0 +1,66 @@
+problem:
+  instance:
+    C: 256
+    E: 14
+    F: 14
+    G: 1
+    M: 256
+    N: 1
+    R: 3
+    S: 3
+    densities:
+      Inputs:
+        density: 0.89724
+        distribution: hypergeometric
+      Weights:
+        density: 0.65507
+        distribution: hypergeometric
+  shape:
+    coefficients:
+    - default: 1
+      name: Wstride
+    - default: 1
+      name: Hstride
+    - default: 1
+      name: Wdilation
+    - default: 1
+      name: Hdilation
+    data-spaces:
+    - name: Weights
+      projection:
+      - - - C
+      - - - M
+      - - - G
+      - - - R
+      - - - S
+    - name: Inputs
+      projection:
+      - - - N
+      - - - C
+      - - - G
+      - - - R
+          - Wdilation
+        - - E
+          - Wstride
+      - - - S
+          - Hdilation
+        - - F
+          - Hstride
+    - name: Outputs
+      projection:
+      - - - N
+      - - - G
+      - - - M
+      - - - F
+      - - - E
+      read-write: true
+    dimensions:
+    - R
+    - S
+    - E
+    - F
+    - C
+    - M
+    - N
+    - G
+    name: grouped-CONV

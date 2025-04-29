@@ -1,7 +1,7 @@
 architecture:
   version: 0.3
   local:
-  - name: eyeriss_v2_PE.PE.iact_spad[0..7]
+  - name: eyeriss_v2_PE.PE.iact_spad
     class: storage
     subclass: SRAM_MD
     attributes:
@@ -9,18 +9,16 @@ architecture:
       block_size: 1
       counter_width: 0
       data_storage_depth: 16
-      data_storage_width: 8
-      datawidth: 8
-      meshX: 4
-      meshY: 2
+      data_storage_width: 32
+      datawidth: 32
       metadata_storage_depth: 25
       metadata_storage_width: 4
       n_banks: 1
       n_rdwr_ports: 2
-      phy_datawidth: 8
+      phy_datawidth: 32
       phy_metadata_datawidth: 4
       technology: 45nm
-  - name: eyeriss_v2_PE.PE.weight_spad[0..7]
+  - name: eyeriss_v2_PE.PE.weight_spad
     class: storage
     subclass: SRAM_MD
     attributes:
@@ -28,66 +26,60 @@ architecture:
       block_size: 1
       counter_width: 0
       data_storage_depth: 192
-      data_storage_width: 8
-      datawidth: 8
-      meshX: 4
-      meshY: 2
+      data_storage_width: 32
+      datawidth: 32
       metadata_storage_depth: 128
       metadata_storage_width: 8
       n_banks: 1
       n_rdwr_ports: 2
-      phy_datawidth: 8
+      phy_datawidth: 32
       phy_metadata_datawidth: 8
       technology: 45nm
-  - name: eyeriss_v2_PE.PE.psum_spad[0..7]
+  - name: eyeriss_v2_PE.PE.psum_spad
     class: storage
     subclass: SRAM
     attributes:
       block_size: 1
-      datawidth: 20
+      datawidth: 32
       depth: 32
       latency: 5ns
-      meshX: 4
-      meshY: 2
       n_banks: 1
       n_rd_ports: 0
       n_rdwr_ports: 1
       n_wr_ports: 0
       technology: 45nm
-      width: 20
-  - name: eyeriss_v2_PE.PE.reg[0..7]
+      width: 32
+  - name: eyeriss_v2_PE.PE.reg
     class: storage
     subclass: SRAM_MD
     attributes:
       ag_datawidth: 0
       counter_width: 0
       data_storage_depth: 1
-      data_storage_width: 8
-      datawidth: 8
-      meshX: 4
-      meshY: 2
+      data_storage_width: 32
+      datawidth: 32
       metadata_storage_depth: 1
       metadata_storage_width: 4
       n_banks: 1
       n_rdwr_ports: 2
-      phy_datawidth: 8
+      phy_datawidth: 32
       phy_metadata_datawidth: 4
       technology: 45nm
-  - name: eyeriss_v2_PE.PE.MAC[0..7]
+  - name: eyeriss_v2_PE.PE.MAC
     class: compute
-    subclass: Imac
+    subclass: FP32mac
     attributes:
-      datawidth: 8
-      meshX: 4
-      meshY: 2
+      exponent: 8
+      mantissa: 23
+      sign: 1
       technology: 45nm
   - name: eyeriss_v2_PE.BackingStorage
     class: DRAM
     subclass: DRAM
     attributes:
-      block_size: 8
-      datawidth: 8
+      block_size: 1
+      datawidth: 32
       metadata_storage_width: 8
       technology: 45nm
       type: LPDDR4
-      width: 64
+      width: 32

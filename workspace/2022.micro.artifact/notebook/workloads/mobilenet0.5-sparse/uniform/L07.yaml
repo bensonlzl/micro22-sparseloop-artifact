@@ -25,8 +25,8 @@ problem:
           - [ [N] ]
           - [ [C] ]
           - [ [G] ]
-          - [ [R, Wdilation], [E, Wstride] ] # SOP form: R*Wdilation + P*Wstride
-          - [ [S, Hdilation], [F, Hstride] ] # SOE form: S*Hdilation + F*Hstride 
+          - [ [R, Wdilation], [E, Wstride] ]
+          - [ [S, Hdilation], [F, Hstride] ]
       - name: Outputs
         projection:
           - [ [N] ]

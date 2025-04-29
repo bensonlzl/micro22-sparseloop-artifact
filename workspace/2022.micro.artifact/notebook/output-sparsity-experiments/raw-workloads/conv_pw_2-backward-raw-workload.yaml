@@ -1,0 +1,66 @@
+problem:
+  shape:
+    name: grouped-CONV-backpropagation
+    dimensions:
+    - R
+    - S
+    - E
+    - F
+    - C
+    - M
+    - N
+    - G
+    coefficients:
+    - name: Wstride
+      default: 1
+    - name: Hstride
+      default: 1
+    - name: Wdilation
+      default: 1
+    - name: Hdilation
+      default: 1
+    data-spaces:
+    - name: Outputs
+      projection:
+      - - - C
+      - - - M
+      - - - G
+      - - - R
+      - - - S
+      read-write: true
+    - name: Weights
+      projection:
+      - - - N
+      - - - C
+      - - - G
+      - - - R
+          - Wdilation
+        - - E
+          - Wstride
+      - - - S
+          - Hdilation
+        - - F
+          - Hstride
+    - name: Inputs
+      projection:
+      - - - N
+      - - - G
+      - - - M
+      - - - F
+      - - - E
+  instance:
+    M: 32
+    E: 56
+    F: 56
+    R: 1
+    S: 1
+    N: 1
+    G: 1
+    C: 32
+    densities:
+      Inputs:
+        distribution: hypergeometric
+        density: 1.0
+      Weights:
+        distribution: hypergeometric
+        density: 0.9181730309311223

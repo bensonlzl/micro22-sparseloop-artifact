@@ -1,0 +1,66 @@
+problem:
+  instance:
+    C: 128
+    E: 28
+    F: 28
+    G: 1
+    M: 128
+    N: 1
+    R: 3
+    S: 3
+    densities:
+      Inputs:
+        density: 0.88944
+        distribution: hypergeometric
+      Weights:
+        density: 1.0
+        distribution: hypergeometric
+  shape:
+    coefficients:
+    - default: 1
+      name: Wstride
+    - default: 1
+      name: Hstride
+    - default: 1
+      name: Wdilation
+    - default: 1
+      name: Hdilation
+    data-spaces:
+    - name: Outputs
+      projection:
+      - - - C
+      - - - M
+      - - - G
+      - - - R
+      - - - S
+      read-write: true
+    - name: Weights
+      projection:
+      - - - N
+      - - - C
+      - - - G
+      - - - R
+          - Wdilation
+        - - E
+          - Wstride
+      - - - S
+          - Hdilation
+        - - F
+          - Hstride
+    - name: Inputs
+      projection:
+      - - - N
+      - - - G
+      - - - M
+      - - - F
+      - - - E
+    dimensions:
+    - R
+    - S
+    - E
+    - F
+    - C
+    - M
+    - N
+    - G
+    name: grouped-CONV-backpropagation

@@ -3,6 +3,19 @@ import yaml, inspect, os, sys, subprocess, pprint, shutil, argparse
 
 from graphing_functions import *
 
+def get_yaml_object(yaml_filename):
+    yaml_object = {}
+    with open(yaml_filename) as stream:
+        try:
+            yaml_object = yaml.safe_load(stream)
+        except yaml.YAMLError as exc:
+            print(exc)
+    return yaml_object
+
+def write_yaml_to_file(yaml_filename, yaml_object):
+    with open(yaml_filename, 'w') as outfile:
+        yaml.dump(yaml_object, outfile, default_flow_style=False)
+
 def get_all_files_in_dir(given_dir):
     return sorted([
         os.path.join(
@@ -57,6 +70,20 @@ def run_timeloop(workloads, mappings, config, pe_art, pe_ert, arch, output_dir, 
     plot_energy_breakdown_multiple(algorithmic_outputs_list,actual_outputs_list,labels)
     plot_scalar_activity_multiple(memory_movement_list,labels)
     plot_cycle_counts(cycles_list)
+    
+def run_timeloop_single(workload, mapping, config, pe_art, pe_ert, arch):
+    timeloop_exe = "timeloop-model"
+    lst_of_input_files = [
+        workload,
+        mapping,
+        config,
+        pe_art,
+        pe_ert,
+        arch
+    ]
+    subprocess_cmd = [timeloop_exe, *lst_of_input_files]
+    status = subprocess.call(subprocess_cmd) 
+    print("TIMELOOP-MODEL COMMAND: ", ' '.join(subprocess_cmd))
     
     
 def run_accelergy(arch, components):

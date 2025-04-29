@@ -47,7 +47,7 @@ def parse_energy_summary(file_path):
         if in_algo and re.match(r'^.+?=\s+[\d.]+$', stripped):
             key, val = map(str.strip, stripped.split(' = '))
             val = float(val)
-            if val == 0:
+            if "<==>" in key:
                 continue
             if key == "Total":
                 algorithmic['total_energy_per_compute_pJ'] = val
@@ -57,7 +57,7 @@ def parse_energy_summary(file_path):
         elif in_actual and re.match(r'^.+?=\s+[\d.]+$', stripped):
             key, val = map(str.strip, stripped.split(' = '))
             val = float(val)
-            if val == 0:
+            if "<==>" in key:
                 continue
             if key == "Total":
                 actual['total_energy_per_compute_pJ'] = val
@@ -67,9 +67,6 @@ def parse_energy_summary(file_path):
     return algorithmic, actual
 
 
-
-
-import matplotlib.pyplot as plt
 
 def plot_energy_breakdown_multiple(algorithmic_list, actual_list, labels):
     assert len(algorithmic_list) == len(actual_list) == len(labels), "Each algorithmic/actual entry must have a corresponding label."
@@ -105,7 +102,9 @@ def plot_energy_breakdown_multiple(algorithmic_list, actual_list, labels):
 
         # --- Actual chart ---
         bottoms = [0] * num_configs
+        
         for i, comp_vals in enumerate(actual_data):
+            print(f"{i=},{comp_vals=}")
             ax2.bar(x, comp_vals, width, bottom=bottoms, label=components[i], color=f"C{i}")
             bottoms = [bottoms[j] + comp_vals[j] for j in range(num_configs)]
         ax2.set_title(f"Actual Energy Breakdown {title_suffix}")
@@ -117,6 +116,7 @@ def plot_energy_breakdown_multiple(algorithmic_list, actual_list, labels):
 
     # === First plot: with BackingStorage ===
     comp_all, algo_data_all = extract_data(algorithmic_list, exclude_backing=False)
+    print(comp_all)
     _, actual_data_all = extract_data(actual_list, exclude_backing=False)
 
     fig1, (ax1a, ax2a) = plt.subplots(1, 2, figsize=(14, 6))

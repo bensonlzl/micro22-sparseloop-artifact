@@ -1,0 +1,15 @@
+ART:
+  version: 0.3
+  tables:
+  - name: eyeriss_v2_PE.PE.psum_spad[0..7]
+    area: 1020.59
+  - name: eyeriss_v2_PE.BackingStorage
+    area: 0
+  - name: eyeriss_v2_PE.PE.iact_spad[0..7]
+    area: 349.43
+  - name: eyeriss_v2_PE.PE.weight_spad[0..7]
+    area: 3107.32
+  - name: eyeriss_v2_PE.PE.reg[0..7]
+    area: 47.84
+  - name: eyeriss_v2_PE.PE.MAC[0..7]
+    area: 332.25

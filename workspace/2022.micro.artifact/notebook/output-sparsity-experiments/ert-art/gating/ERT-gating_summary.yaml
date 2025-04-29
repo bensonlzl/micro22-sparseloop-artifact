@@ -1,0 +1,117 @@
+ERT_summary:
+  version: 0.3
+  table_summary:
+  - name: eyeriss_v2_PE.PE.psum_spad
+    actions:
+    - name: read
+      average_energy: 0.33579
+      max_energy: 0.67157
+      min_energy: 1.0e-05
+    - name: write
+      average_energy: 0.55258
+      max_energy: 1.10514
+      min_energy: 1.0e-05
+    - name: idle
+      energy: 1.0e-05
+    primitive_estimation(s):
+    - name: eyeriss_v2_PE.PE.psum_spad
+      estimator: Cacti
+  - name: eyeriss_v2_PE.BackingStorage
+    actions:
+    - name: read
+      energy: 256
+    - name: write
+      energy: 256
+    - name: idle
+      energy: 0
+    primitive_estimation(s):
+    - name: eyeriss_v2_PE.BackingStorage
+      estimator: Cacti
+  - name: eyeriss_v2_PE.PE.iact_spad
+    actions:
+    - name: write
+      energy: 1.34242
+    - name: read
+      energy: 0.76204
+    - name: gated_write
+      energy: 1.0e-05
+    - name: gated_read
+      energy: 1.0e-05
+    - name: metadata_read
+      energy: 0.14934
+    - name: metadata_write
+      energy: 0.14934
+    - name: gated_metadata_read
+      energy: 0.00195
+    - name: gated_metadata_write
+      energy: 0.00195
+    - name: leak
+      energy: 1
+    primitive_estimation(s):
+    - name: storage
+      estimator: Cacti
+    - name: metadata_storage
+      estimator: Aladdin_table
+  - name: eyeriss_v2_PE.PE.weight_spad
+    actions:
+    - name: write
+      energy: 2.07194
+    - name: read
+      energy: 1.35544
+    - name: gated_write
+      energy: 2.0e-05
+    - name: gated_read
+      energy: 2.0e-05
+    - name: metadata_read
+      energy: 0.47678
+    - name: metadata_write
+      energy: 0.51919
+    - name: gated_metadata_read
+      energy: 1.0e-05
+    - name: gated_metadata_write
+      energy: 1.0e-05
+    - name: leak
+      energy: 1
+    primitive_estimation(s):
+    - name: storage
+      estimator: Cacti
+    - name: metadata_storage
+      estimator: Cacti
+  - name: eyeriss_v2_PE.PE.reg
+    actions:
+    - name: write
+      energy: 1
+    - name: read
+      energy: 1
+    - name: gated_write
+      energy: 0
+    - name: gated_read
+      energy: 0
+    - name: metadata_read
+      energy: 0
+    - name: metadata_write
+      energy: 0
+    - name: gated_metadata_read
+      energy: 0
+    - name: gated_metadata_write
+      energy: 0
+    - name: leak
+      energy: 1
+    primitive_estimation(s):
+    - name: storage
+      estimator: dummy_table
+    - name: metadata_storage
+      estimator: Cacti
+  - name: eyeriss_v2_PE.PE.MAC
+    actions:
+    - name: mac_random
+      energy: 30.57908
+    - name: mac_gated
+      energy: 0.81435
+    - name: mac_skipped
+      energy: 0.81435
+    primitive_estimation(s):
+    - name: multiplier
+      estimator: Aladdin_table
+    - name: adder
+      estimator: Aladdin_table

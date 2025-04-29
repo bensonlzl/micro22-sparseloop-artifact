@@ -1,0 +1,41 @@
+ART_summary:
+  version: 0.3
+  table_summary:
+  - name: eyeriss_v2_PE.BackingStorage
+    area: 0
+    primitive_estimations: Cacti
+  - name: eyeriss_v2_PE.PE.iact_spad[0..7]
+    area: 485.1975
+    primitive_estimations:
+    - name: storage
+      estimator: Aladdin_table
+    - name: metadata_storage
+      estimator: Aladdin_table
+  - name: eyeriss_v2_PE.PE.weight_spad[0..7]
+    area: 3107.32
+    primitive_estimations:
+    - name: storage
+      estimator: Cacti
+    - name: metadata_storage
+      estimator: Cacti
+  - name: eyeriss_v2_PE.PE.psum_spad[0..7]
+    area: 3160.91
+    primitive_estimations:
+    - name: storage
+      estimator: Cacti
+    - name: metadata_storage
+      estimator: Cacti
+  - name: eyeriss_v2_PE.PE.reg[0..7]
+    area: 47.84
+    primitive_estimations:
+    - name: storage
+      estimator: Aladdin_table
+    - name: metadata_storage
+      estimator: Cacti
+  - name: eyeriss_v2_PE.PE.MAC[0..7]
+    area: 332.25
+    primitive_estimations:
+    - name: multiplier
+      estimator: Aladdin_table
+    - name: adder
+      estimator: Aladdin_table
